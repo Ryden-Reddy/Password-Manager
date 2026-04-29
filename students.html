@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Manager — View Passwords</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo-container">
+      <span style="font-size: 1.8rem;">🔑</span> Vought
+    </a>
+    <div class="header-actions">
+      <a href="index.html" style="text-decoration: none;"><button class="btn-round" title="Add Account">+</button></a>
+      <button class="btn-pill">Passwords <span id="userEmail" style="font-size: 0.8rem; margin-left:8px; opacity: 0.7;"></span></button>
+      <button class="btn-pill btn-logout" id="logoutBtn">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-section">
+          <h4>Categories</h4>
+          <ul class="category-list">
+            <li class="category-item active">
+              <span>🛡️ All Passwords</span><span class="cat-count" id="countAll">0</span>
+            </li>
+            <li class="category-item">
+              <span>🌐 Login</span><span class="cat-count" id="countLogin">0</span>
+            </li>
+            <li class="category-item">
+              <span>✉️ Email</span><span class="cat-count" id="countEmail">0</span>
+            </li>
+            <li class="category-item">
+              <span>💼 Work</span><span class="cat-count" id="countWork">0</span>
+            </li>
+            <li class="category-item">
+              <span>💳 Finance</span><span class="cat-count" id="countFinance">0</span>
+            </li>
+            <li class="category-item">
+              <span>💬 Social</span><span class="cat-count" id="countSocial">0</span>
+            </li>
+            <li class="category-item">
+              <span>🛒 Shopping</span><span class="cat-count" id="countShopping">0</span>
+            </li>
+            <li class="category-item">
+              <span>💻 Dev Tools</span><span class="cat-count" id="countDevTools">0</span>
+            </li>
+            <li class="category-item">
+              <span>📁 Other</span><span class="cat-count" id="countOther">0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h1 class="page-title">All Passwords</h1>
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search passwords..." />
+      </div>
+      <div id="tableContainer"></div>
+    </main>
+  </div>
+
+  <div id="editModal" class="modal-overlay">
+    <div class="modal-card">
+      <h2 style="margin-bottom: 1.5rem;">Edit Account</h2>
+      <input type="hidden" id="editId">
+      <div class="form-group"><label>Account Name</label><input type="text" id="editName"></div>
+      <div class="form-group"><label>Email / Username</label><input type="text" id="editEmail"></div>
+      <div class="form-group"><label>Password</label><input type="text" id="editPassword"></div>
+      
+      <div class="form-group"><label>Website URL</label><input type="url" id="editUrl"></div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select id="editCategory">
+          <option value="Login">Login</option>
+          <option value="Email">Email</option>
+          <option value="Finance">Finance</option>
+          <option value="Social">Social</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Work">Work</option>
+          <option value="Dev Tools">Dev Tools</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-pill" onclick="closeEditModal()" style="background: transparent; border: 1px solid #555;">Cancel</button>
+        <button class="btn-primary" onclick="saveEdit()" style="width: auto; margin-top: 0;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/students.js"></script>
+</body>
+</html>
