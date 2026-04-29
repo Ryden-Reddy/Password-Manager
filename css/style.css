@@ -1,0 +1,290 @@
+/* --- Global Variables & Reset --- */
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-card: #141414;
+  --bg-input: #1a1a1a;
+  --border-color: #2a2a2a;
+  --text-main: #ffffff;
+  --text-muted: #888888;
+  --accent-white: #ffffff;
+  --accent-blue: #3b82f6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;}
+
+/* --- Animations --- */
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Top Navigation --- */
+header {
+  position: fixed; top: 0; width: 100%; height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; background: var(--bg-dark); z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+.logo-container { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--text-main); text-decoration: none; transition: transform 0.2s;}
+.logo-container:hover { transform: scale(1.02); }
+.header-actions { display: flex; align-items: center; gap: 15px; }
+
+.btn-round { 
+  width: 36px; height: 36px; border-radius: 50%; 
+  background: var(--accent-white); color: #000; 
+  border: none; font-size: 1.6rem; font-weight: 400;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-round:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+
+.btn-pill { background: #222; color: #fff; padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: background 0.2s, transform 0.2s; }
+.btn-pill:hover { background: #333; transform: translateY(-1px); }
+.btn-logout { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); }
+.btn-logout:hover { background: #222; color: #fff; }
+
+/* --- App Layout --- */
+.app-container { display: flex; width: 100%; margin-top: 70px; flex: 1; }
+
+/* Sidebar */
+.sidebar {
+  width: 260px; padding: 2rem 1.5rem; border-right: 1px solid var(--border-color);
+  height: calc(100vh - 70px); position: fixed; display: flex; flex-direction: column; justify-content: space-between;
+}
+.sidebar-section h4 { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px; font-weight: 700;}
+.category-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.category-item { 
+  display: flex; justify-content: space-between; align-items: center; 
+  padding: 10px 12px; border-radius: 8px; cursor: pointer; color: var(--text-muted); transition: all 0.2s ease; font-size: 0.95rem;
+}
+.category-item:hover, .category-item.active { background: #222; color: var(--text-main); transform: translateX(4px); }
+.cat-count { background: #333; color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; transition: background 0.2s;}
+
+/* Main Content */
+.main-content { 
+  margin-left: 260px; flex: 1; padding: 2rem 4rem; max-width: 1200px; 
+  animation: fadeInScale 0.4s ease-out forwards;
+}
+.page-title { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
+.page-subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem; }
+
+/* Search Bar */
+.search-wrapper { margin-bottom: 2rem; }
+.search-input { 
+  width: 100%; max-width: 500px; background: var(--bg-input); border: 1px solid var(--border-color);
+  padding: 12px 20px; border-radius: 24px; color: var(--text-main); font-size: 0.95rem; outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-input:focus { border-color: #555; box-shadow: 0 0 0 2px rgba(255,255,255,0.1); }
+
+/* --- Figma Password Cards --- */
+.cards-container { display: flex; flex-direction: column; gap: 12px; }
+.password-card {
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+  padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;
+  opacity: 0; animation: slideUpFade 0.4s ease-out forwards;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.password-card:hover { border-color: #444; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+.card-left { display: flex; align-items: center; gap: 16px; }
+.site-icon-wrap { 
+  width: 48px; height: 48px; background: #222; border-radius: 12px; 
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #aaa;
+}
+.site-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.site-info p { font-size: 0.85rem; color: var(--text-muted); }
+.site-info a { font-size: 0.8rem; color: var(--accent-blue); text-decoration: none; transition: color 0.2s;}
+.site-info a:hover { color: #60a5fa; text-decoration: underline; }
+
+.card-right { display: flex; align-items: center; gap: 24px; }
+.pass-box input { 
+  background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 20px;
+  padding: 8px 16px; color: var(--text-main); font-family: monospace; width: 140px; outline: none; text-align: center; font-size: 1.2rem; letter-spacing: 2px;
+}
+.action-icons { display: flex; gap: 12px; }
+.icon-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: color 0.2s, transform 0.2s; }
+.icon-btn:hover { color: var(--text-main); transform: scale(1.15); }
+
+/* --- Forms & Inputs --- */
+.form-group { margin-bottom: 1.2rem; text-align: left; }
+.form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+.form-group input, .form-group select { 
+  width: 100%; padding: 12px 16px; background: var(--bg-input); 
+  border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); 
+  outline: none; font-size: 0.95rem; transition: border-color 0.3s;
+}
+.form-group input:focus, .form-group select:focus { border-color: #666; }
+.input-icon-wrap { position: relative; display: flex; align-items: center; }
+.toggle-pw { position: absolute; right: 12px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: color 0.2s;}
+.toggle-pw:hover { color: #fff; }
+
+/* --- Buttons --- */
+.btn-primary { 
+  width: 100%; padding: 12px; background: var(--accent-white); color: #000; 
+  border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; 
+  cursor: pointer; margin-top: 10px; transition: opacity 0.2s, transform 0.1s;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px);}
+.btn-primary:active { transform: translateY(1px); }
+
+/* --- Add Account Page --- */
+.add-account-main { 
+  max-width: 600px; margin: 0 auto; padding: 2rem; width: 100%; display: flex; 
+  flex-direction: column; justify-content: center; min-height: calc(100vh - 70px); margin-top: 70px;
+  animation: fadeInScale 0.4s ease-out forwards;
+}
+.card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
+
+/* --- Edit Modal Styles --- */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px);
+  z-index: 1000; justify-content: center; align-items: center;
+}
+.modal-card {
+  background: var(--bg-card); border: 1px solid var(--border-color);
+  border-radius: 16px; padding: 2rem; width: 90%; max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  animation: fadeInScale 0.3s ease-out forwards;
+}
+.modal-actions { display: flex; gap: 12px; margin-top: 2rem; justify-content: flex-end; }
+
+/* --- Loading Screen --- */
+.loader-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--bg-dark); display: flex; flex-direction: column;
+  justify-content: center; align-items: center; z-index: 9999; 
+  opacity: 0; visibility: hidden; 
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.loader-container.active { opacity: 1; visibility: visible; }
+.loader-logo {
+  font-size: 3rem; font-weight: 700; color: var(--text-main);
+  display: flex; align-items: center; gap: 12px;
+  animation: pulseLogo 1.2s infinite alternate ease-in-out;
+}
+@keyframes pulseLogo {
+  0% { transform: scale(0.95); opacity: 0.8; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));}
+  100% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));}
+}
+/* --- Auth Pages (Login/Signup) --- */
+.auth-body { 
+  display: flex !important; 
+  flex-direction: column !important; 
+  align-items: center !important; 
+  justify-content: center !important; 
+  min-height: 100vh; 
+  margin: 0;
+  background: radial-gradient(circle at top, #161616, var(--bg-dark)) !important; 
+}
+
+.auth-wrapper { 
+  width: 100%; 
+  max-width: 420px; /* This prevents it from stretching */
+  padding: 20px; 
+  margin: 0 auto; 
+  box-sizing: border-box;
+}
+
+.auth-brand { 
+  text-align: center; 
+  margin-bottom: 2rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-title { 
+  font-size: 2.2rem; 
+  font-weight: bold; 
+  margin-bottom: 5px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-tagline { 
+  color: var(--text-muted); 
+  font-size: 0.9rem; 
+}
+
+.auth-card { 
+  background: var(--bg-card); 
+  border: 1px solid var(--border-color); 
+  border-radius: 16px; 
+  padding: 2.5rem 2rem; 
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
+  width: 100%;
+  box-sizing: border-box;
+  /* NEW: Smooth entrance animation */
+  animation: authEntrance 0.4s ease-out forwards;
+}
+
+/* NEW: The animation definitions */
+@keyframes authEntrance {
+  0% { opacity: 0; transform: translateY(15px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* NEW: The exit class triggered by JavaScript */
+.auth-exit {
+  opacity: 0 !important;
+  transform: translateY(-15px) scale(0.98) !important;
+  transition: all 0.3s ease-in !important;
+}
+
+.auth-heading { 
+  font-size: 1.4rem; 
+  margin-bottom: 5px; 
+  text-align: center;
+}
+
+.auth-sub { 
+  color: var(--text-muted); 
+  font-size: 0.85rem; 
+  margin-bottom: 1.5rem; 
+  text-align: center;
+}
+
+.auth-error { 
+  color: #ff4d4d; 
+  font-size: 0.85rem; 
+  display: none; 
+  margin-bottom: 10px; 
+  text-align: center;
+}
+
+.auth-switch { 
+  margin-top: 1.5rem; 
+  font-size: 0.85rem; 
+  color: var(--text-muted); 
+  text-align: center;
+}
+
+.auth-switch a { 
+  color: var(--accent-white); 
+  text-decoration: none; 
+  font-weight: 500; 
+}
+
+/* --- Add Account Page --- */
+.add-account-main { max-width: 600px; margin: 0 auto; padding: 2rem; width: 100%; display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 70px); margin-top: 70px; animation: fadeInScale 0.4s ease-out forwards; }
+.card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+/* --- Edit Modal Styles --- */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 1000; justify-content: center; align-items: center; }
+.modal-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); animation: fadeInScale 0.3s ease-out forwards; }
+.modal-actions { display: flex; gap: 12px; margin-top: 2rem; justify-content: flex-end; }
+
+/* --- Loading Screen --- */
+.loader-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+.loader-container.active { opacity: 1; visibility: visible; }
+.loader-logo { font-size: 3rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 12px; animation: pulseLogo 1.2s infinite alternate ease-in-out; }
+@keyframes pulseLogo { 0% { transform: scale(0.95); opacity: 0.8; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));} 100% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));} }
