@@ -1,8 +1,5 @@
 # 🔑 Vought: Serverless Password Manager
 
-![Vought Dashboard](<img width="729" height="782" alt="image" src="https://github.com/user-attachments/assets/9d9e733e-de47-4159-a2c0-5980aa691b38" />
-)
-
 Vought is a lightweight, secure, and fully responsive password management dashboard. Built with a "No-Build" philosophy, it utilizes native web technologies (HTML, CSS, Vanilla JS) integrated with a modern serverless backend (Supabase).
 
 This project demonstrates how to build a production-quality, secure vault interface without the overhead of heavy JavaScript frameworks, relying on database-level Row Level Security (RLS) to ensure data privacy.
